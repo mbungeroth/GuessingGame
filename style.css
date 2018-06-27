@@ -1,11 +1,28 @@
 body {
   background: linear-gradient(to left, #032863, #2f7fff);
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 15px;
+  color: white;
+  height: 60px;
+  width: 75px;
+  background-color: #7547ff;
+  font-size: 0.7em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .container {
   font-family: 'Anton', sans-serif;
   font-size: 2em;
   letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -27,18 +44,25 @@ h4 {
 
 .make-guess-area {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #guess {
+
   border-radius: 50%;
   width: 160px;
   height: 160px;
   border: 4px solid #c511ad;
   font-size: 60px;
   text-align: center;
-  position: relative;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#submit {
+  margin-top: -20px;
+  z-index: 1;
+  background-color: #c60057;
 }
 
 .guesses-display {
@@ -49,6 +73,7 @@ h4 {
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 li {
@@ -64,6 +89,33 @@ li {
 .extra-buttons {
   display: flex;
   justify-content: center;
+  margin-top: -24px;
+}
+
+.center {
+  text-align: center;
+}
+
+#footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: white;
+  opacity: 0.75;
+  margin: 15px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+#fs-logo {
+  width: 50%;
+}
+
+#by-me {
+  padding-top: 30px;
+}
+
+#gh-logo {
+  width: 30%
 }
 
 #particles-js canvas{

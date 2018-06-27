@@ -6,7 +6,7 @@
   <title>Guessing Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat" rel="stylesheet">
 </head>
 <body>
   <div id="particles-js"></div>
@@ -16,8 +16,8 @@
       <h4>Guess a number between 1 - 100:</h4>
     </div>
     <div class="make-guess-area">
-      <input type="text" placeholder="#" id="guess">
-      <button>Go</button>
+      <input type="text" placeholder="#" maxlength="3" id="guess">
+      <button id="submit">Go</button>
     </div>
 
     <div>
@@ -34,8 +34,20 @@
       <button>Reset</button>
       <button>Hint</button>
     </div>
+
   </div>
 
+  <div id='footer' class='center'>
+    <div class="test">
+      <img id="fs-logo" src='fa-logo@2x.png'></img>
+    </div>
+    <div>
+      <h4 id="by-me">Project by Mark Bungeroth</h4>
+    </div>
+    <div>
+      <img id="gh-logo" src='grace_hopper_academy.png' ></img>
+    </div>
+  </div>
 
   <script src="particles.js"></script>
   <script src="app.js"></script>

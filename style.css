@@ -1,23 +1,73 @@
 body {
-  background: linear-gradient(to left, #032863, #2f7fff)
-}
-
-.title {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: linear-gradient(to left, #032863, #2f7fff);
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: 'Anton', sans-serif;
   font-size: 2em;
+  letter-spacing: 1px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  color: rgb(240, 240, 240);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+h4 {
+  margin-top: 0;
+}
+
+.make-guess-area {
+  display: flex;
+  justify-content: center;
+}
+
+#guess {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  border: 4px solid #c511ad;
+  font-size: 60px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .guesses-display {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: 10px;
+  width: 105px;
+  background: #c511ad;
+  color: rgb(240, 240, 240);
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.extra-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#particles-js canvas{
+  position: absolute;
+  height: 100vh;
+  z-index: -1;
 }

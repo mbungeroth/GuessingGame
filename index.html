@@ -9,26 +9,35 @@
   <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 </head>
 <body>
+  <div id="particles-js"></div>
   <div class="container">
     <div class="title">
       <h1>Play the Guessing Game!</h1>
-      <h2>Guess a number between 1-100:</h2>
+      <h4>Guess a number between 1 - 100:</h4>
     </div>
     <div class="make-guess-area">
-      <div>Make a Guess</div>
+      <input type="text" placeholder="#" id="guess">
       <button>Go</button>
     </div>
-    <div class="guesses-display">
-      <div>Guess 1</div>
-      <div>Guess 2</div>
-      <div>Guess 3</div>
-      <div>Guess 4</div>
-      <div>Guess 5</div>
+
+    <div>
+      <ul class="guesses-display">
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>
     </div>
+
     <div class="extra-buttons">
       <button>Reset</button>
       <button>Hint</button>
     </div>
   </div>
+
+
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

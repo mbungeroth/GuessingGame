@@ -1,0 +1,23 @@
+body {
+  background: linear-gradient(to left, #032863, #2f7fff)
+}
+
+.title {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 2em;
+}
+
+.guesses-display {
+  display: flex;
+  flex-direction: row;
+}

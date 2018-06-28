@@ -72,6 +72,7 @@ Game.prototype.checkGuess = function(num) {
     cold: "You're ice cold!",
   };
   if (num === this.winningNumber) {
+    document.getElementById('guess').setAttribute('disabled', true);
     return responses.correct;
   } else if (this.pastGuesses.includes(num)) {
     return responses.duplicate;

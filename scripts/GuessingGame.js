@@ -71,7 +71,11 @@ Game.prototype.checkGuess = function(num) {
     lukewarm: "You're lukewarm.",
     chilly: "You're a bit chilly.",
     cold: "You're ice cold!",
+    high: "Guess higher.",
+    low: "Guess lower."
   };
+  let guessDirection = num < this.winningNumber ? responses.high : responses.low;
+
   if (num === this.winningNumber) {
     this.pastGuesses.push(num);
     guessBox.setAttribute('disabled', true);
@@ -86,13 +90,13 @@ Game.prototype.checkGuess = function(num) {
     guessBox.setAttribute('disabled', true);
     return responses.lose;
   } else if (this.difference() < 10) {
-    return responses.burning;
+    return `${responses.burning} ${guessDirection}`;
   } else if (this.difference() < 25) {
-    return responses.lukewarm;
+    return `${responses.lukewarm} ${guessDirection}`;
   } else if (this.difference() < 50) {
-    return responses.chilly;
+    return `${responses.chilly} ${guessDirection}`;
   } else {
-    return responses.cold;
+    return `${responses.cold} ${guessDirection}`;
   }
 };
 
@@ -160,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
     textAreas.guessInfo.textContent = hintsText;
     setTimeout(function() {
       textAreas.guessInfo.style.opacity = 0;
-    }, 500);
+    }, 700);
     buttons.hint.setAttribute('disabled', true);
     buttons.hint.style.boxShadow = 'none';
     buttons.hint.style.color = "grey";

@@ -49,12 +49,15 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(num) {
+  const resultText = document.getElementById('guess-results');
   if (validGuess(num)) {
     this.playersGuess = num;
-    return this.checkGuess(num);
+    resultText.textContent = this.checkGuess(num);
+    resultText.style.opacity = 1;
   } else {
     const errorResponses = { badGuess: 'That is an invalid guess.' };
-    throw errorResponses.badGuess;
+    resultText.textContent = errorResponses.badGuess;
+    resultText.style.opacity = 1;
   }
 };
 
@@ -77,6 +80,7 @@ Game.prototype.checkGuess = function(num) {
   }
 
   if (this.pastGuesses.length === 5) {
+    document.getElementById('guess').setAttribute('disabled', true);
     return responses.lose;
   } else if (this.difference() < 10) {
     return responses.burning;
@@ -111,11 +115,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const textAreas = {
     input: document.getElementById('guess'),
-    guesses: document.querySelectorAll('li')
+    guesses: document.querySelectorAll('li'),
+    guessInfo: document.getElementById('guess-results')
   };
 
   function handleGuess(guess) {
-
     if (validGuess(guess)) {
       game.playersGuessSubmission(guess);
       textAreas.guesses[game.pastGuesses.length - 1].textContent = guess;
@@ -133,17 +137,30 @@ document.addEventListener("DOMContentLoaded", function() {
       let guess = Number(event.target.value);
       handleGuess(guess);
     }
-  })
+  });
 
   buttons.reset.addEventListener('click', function() {
     location.href='./index.html';
-  })
+  });
 
   buttons.go.addEventListener('click', function() {
-    let guess = textAreas.input.value;
+    let guess = Number(textAreas.input.value);
     handleGuess(guess);
   });
 
+  buttons.hint.addEventListener('click', function() {
+    textAreas.guessInfo.style.opacity = 1;
+    const hints = game.provideHint();
+    let hintsText = `Look fast! ${hints.join(' ')}`;
+    textAreas.guessInfo.textContent = hintsText;
+    setTimeout(function() {
+      textAreas.guessInfo.style.opacity = 0;
+    }, 500);
+    buttons.hint.setAttribute('disabled', true);
+    buttons.hint.style.boxShadow = 'none';
+    buttons.hint.style.color = "grey";
+    buttons.hint.classList.add("no-hover");
+  });
 
 });
 

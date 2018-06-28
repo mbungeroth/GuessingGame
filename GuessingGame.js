@@ -18,7 +18,6 @@ function shuffle(arr) {
 
   // While there remain elements to shuffle…
   while (endIndex) {
-
     // Pick a remaining element…
     currentIndex = Math.floor(Math.random() * endIndex--);
 
@@ -39,31 +38,31 @@ function Game() {
 
 Game.prototype.difference = function() {
   return Math.abs(this.playersGuess - this.winningNumber);
-}
+};
 
 Game.prototype.isLower = function() {
   return this.playersGuess < this.winningNumber;
-}
+};
 
 Game.prototype.playersGuessSubmission = function(num) {
   if (num >= 1 && num <= 100) {
     this.playersGuess = num;
     return this.checkGuess(num);
   } else {
-    const errorResponses = {badGuess: "That is an invalid guess."}
+    const errorResponses = { badGuess: 'That is an invalid guess.' };
     throw errorResponses.badGuess;
   }
-}
+};
 
 Game.prototype.checkGuess = function(num) {
   const responses = {
-    correct: "You Win!",
-    duplicate: "You have already guessed that number.",
-    lose: "You Lose.",
+    correct: 'You Win!',
+    duplicate: 'You have already guessed that number.',
+    lose: 'You Lose.',
     burning: "You're burning up!",
     lukewarm: "You're lukewarm.",
     chilly: "You're a bit chilly.",
-    cold: "You're ice cold!"
+    cold: "You're ice cold!",
   };
   if (num === this.winningNumber) {
     return responses.correct;
@@ -84,9 +83,9 @@ Game.prototype.checkGuess = function(num) {
   } else {
     return responses.cold;
   }
-}
+};
 
-const newGame = () => new Game;
+const newGame = () => new Game();
 
 Game.prototype.provideHint = function() {
   const hints = [];
@@ -94,4 +93,4 @@ Game.prototype.provideHint = function() {
   hints.push(generateWinningNumber());
   hints.push(generateWinningNumber());
   return shuffle(hints);
-}
+};

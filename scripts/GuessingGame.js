@@ -62,6 +62,7 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.checkGuess = function(num) {
+  const guessBox = document.getElementById('guess');
   const responses = {
     correct: 'You Win!',
     duplicate: 'You have already guessed that number.',
@@ -72,7 +73,8 @@ Game.prototype.checkGuess = function(num) {
     cold: "You're ice cold!",
   };
   if (num === this.winningNumber) {
-    document.getElementById('guess').setAttribute('disabled', true);
+    this.pastGuesses.push(num);
+    guessBox.setAttribute('disabled', true);
     return responses.correct;
   } else if (this.pastGuesses.includes(num)) {
     return responses.duplicate;
@@ -81,7 +83,7 @@ Game.prototype.checkGuess = function(num) {
   }
 
   if (this.pastGuesses.length === 5) {
-    document.getElementById('guess').setAttribute('disabled', true);
+    guessBox.setAttribute('disabled', true);
     return responses.lose;
   } else if (this.difference() < 10) {
     return responses.burning;

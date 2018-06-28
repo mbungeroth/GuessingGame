@@ -123,6 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (validGuess(guess)) {
       game.playersGuessSubmission(guess);
       textAreas.guesses[game.pastGuesses.length - 1].textContent = guess;
+    } else {
+      game.playersGuessSubmission(guess);
     }
     textAreas.input.value = '';
   }

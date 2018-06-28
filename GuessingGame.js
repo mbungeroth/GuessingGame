@@ -99,6 +99,7 @@ Game.prototype.provideHint = function() {
   return shuffle(hints);
 };
 
+
 document.addEventListener("DOMContentLoaded", function() {
   let game = newGame();
 
@@ -113,27 +114,36 @@ document.addEventListener("DOMContentLoaded", function() {
     guesses: document.querySelectorAll('li')
   };
 
+  function handleGuess(guess) {
+
+    if (validGuess(guess)) {
+      game.playersGuessSubmission(guess);
+      textAreas.guesses[game.pastGuesses.length - 1].textContent = guess;
+    }
+    textAreas.input.value = '';
+  }
+
   textAreas.input.addEventListener('keypress', function() {
     const acceptableKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
                            'Enter'];
     if (!acceptableKeys.includes(event.key)) {
       event.preventDefault();
     }
-
     if (event.key === 'Enter') {
       let guess = Number(event.target.value);
-
-    if (validGuess(guess)) {
-      game.playersGuessSubmission(guess);
-      textAreas.guesses[game.pastGuesses.length - 1].textContent = guess;
-    }
-      event.target.value = '';
+      handleGuess(guess);
     }
   })
 
   buttons.reset.addEventListener('click', function() {
     location.href='./index.html';
   })
+
+  buttons.go.addEventListener('click', function() {
+    let guess = textAreas.input.value;
+    handleGuess(guess);
+  });
+
 
 });
 

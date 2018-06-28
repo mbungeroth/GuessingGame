@@ -30,6 +30,10 @@ function shuffle(arr) {
   return arr;
 }
 
+function validGuess(num) {
+  return (num >= 1 && num <= 100);
+}
+
 function Game() {
   this.playersGuess = null;
   this.pastGuesses = [];
@@ -45,7 +49,7 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(num) {
-  if (num >= 1 && num <= 100) {
+  if (validGuess(num)) {
     this.playersGuess = num;
     return this.checkGuess(num);
   } else {
@@ -94,3 +98,42 @@ Game.prototype.provideHint = function() {
   hints.push(generateWinningNumber());
   return shuffle(hints);
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+  let game = newGame();
+
+  const buttons = {
+    go: document.getElementById('submit'),
+    reset: document.getElementById('reset'),
+    hint: document.getElementById('hint')
+  };
+
+  const textAreas = {
+    input: document.getElementById('guess'),
+    guesses: document.querySelectorAll('li')
+  };
+
+  textAreas.input.addEventListener('keypress', function() {
+    const acceptableKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                           'Enter'];
+    if (!acceptableKeys.includes(event.key)) {
+      event.preventDefault();
+    }
+
+    if (event.key === 'Enter') {
+      let guess = Number(event.target.value);
+
+    if (validGuess(guess)) {
+      game.playersGuessSubmission(guess);
+      textAreas.guesses[game.pastGuesses.length - 1].textContent = guess;
+    }
+      event.target.value = '';
+    }
+  })
+
+  buttons.reset.addEventListener('click', function() {
+    location.href='./index.html';
+  })
+
+});
+

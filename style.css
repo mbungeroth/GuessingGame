@@ -64,7 +64,7 @@ h4 {
   background-color: #c60057;
 }
 
-.guesses-display {
+#guesses-display {
   margin-top: 25px;
   display: flex;
   flex-direction: row;

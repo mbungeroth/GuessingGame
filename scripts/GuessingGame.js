@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
     guessInfo: document.getElementById('guess-results')
   };
 
-  const board = document.querySelector('.container');
+  const gameBoard = document.querySelector('.container');
 
   function handleGuess(guess) {
     if (validGuess(guess)) {
@@ -166,14 +166,14 @@ document.addEventListener("DOMContentLoaded", function() {
     textAreas.guessInfo.textContent = hintsText;
     setTimeout(function() {
       textAreas.guessInfo.style.opacity = 0;
-    }, 700);
+    }, 650);
     buttons.hint.setAttribute('disabled', true);
     buttons.hint.style.boxShadow = 'none';
     buttons.hint.style.color = "grey";
     buttons.hint.classList.add("no-hover");
   };
 
-  board.addEventListener('click', function() {
+  gameBoard.addEventListener('click', function() {
     if (event.target.id === 'submit') {
       handleGoClick();
     } else if (event.target.id === 'reset') {

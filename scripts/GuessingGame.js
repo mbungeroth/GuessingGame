@@ -1,9 +1,5 @@
 function generateWinningNumber() {
-  let winningNumber = Math.floor(Math.random() * 100) + 1;
-  if (winningNumber === 0) {
-    winningNumber++;
-  }
-  return winningNumber;
+  return Math.floor(Math.random() * 100) + 1;
 }
 
 function shuffle(arr) {
@@ -66,7 +62,7 @@ Game.prototype.checkGuess = function(num) {
   const responses = {
     correct: 'You Win!',
     duplicate: 'You have already guessed that number.',
-    lose: 'You Lose.',
+    lose: `You Lose. The winning number was ${this.winningNumber}.`,
     burning: "You're burning up!",
     lukewarm: "You're lukewarm.",
     chilly: "You're a bit chilly.",
@@ -166,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
     textAreas.guessInfo.textContent = hintsText;
     setTimeout(function() {
       textAreas.guessInfo.style.opacity = 0;
-    }, 650);
+    }, 750);
     buttons.hint.setAttribute('disabled', true);
     buttons.hint.style.boxShadow = 'none';
     buttons.hint.style.color = "grey";

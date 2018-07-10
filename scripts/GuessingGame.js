@@ -126,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function() {
     guessInfo: document.getElementById('guess-results')
   };
 
+  const board = document.querySelector('.container');
+
   function handleGuess(guess) {
     if (validGuess(guess)) {
       game.playersGuessSubmission(guess);
@@ -148,16 +150,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  buttons.reset.addEventListener('click', function() {
+  const handleResetClick = function() {
     location.href='./index.html';
-  });
+  };
 
-  buttons.go.addEventListener('click', function() {
+  const handleGoClick = function() {
     let guess = Number(textAreas.input.value);
     handleGuess(guess);
-  });
+  };
 
-  buttons.hint.addEventListener('click', function() {
+  const handleHintClick = function() {
     textAreas.guessInfo.style.opacity = 1;
     const hints = game.provideHint();
     let hintsText = `Look fast! ${hints.join(' ')}`;
@@ -169,6 +171,16 @@ document.addEventListener("DOMContentLoaded", function() {
     buttons.hint.style.boxShadow = 'none';
     buttons.hint.style.color = "grey";
     buttons.hint.classList.add("no-hover");
+  };
+
+  board.addEventListener('click', function() {
+    if (event.target.id === 'submit') {
+      handleGoClick();
+    } else if (event.target.id === 'reset') {
+      handleResetClick();
+    } else if (event.target.id === 'hint') {
+      handleHintClick();
+    }
   });
 
 });

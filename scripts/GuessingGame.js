@@ -27,7 +27,7 @@ function shuffle(arr) {
 }
 
 function validGuess(num) {
-  return (num >= 1 && num <= 100);
+  return num >= 1 && num <= 100;
 }
 
 function Game() {
@@ -67,10 +67,11 @@ Game.prototype.checkGuess = function(num) {
     lukewarm: "You're lukewarm.",
     chilly: "You're a bit chilly.",
     cold: "You're ice cold!",
-    high: "Guess higher.",
-    low: "Guess lower."
+    high: 'Guess higher.',
+    low: 'Guess lower.',
   };
-  let guessDirection = num < this.winningNumber ? responses.high : responses.low;
+  let guessDirection =
+    num < this.winningNumber ? responses.high : responses.low;
 
   if (num === this.winningNumber) {
     this.pastGuesses.push(num);
@@ -82,14 +83,15 @@ Game.prototype.checkGuess = function(num) {
     this.pastGuesses.push(num);
   }
 
+  let diff = this.difference();
   if (this.pastGuesses.length === 5) {
     guessBox.setAttribute('disabled', true);
     return responses.lose;
-  } else if (this.difference() < 10) {
+  } else if (diff < 10) {
     return `${responses.burning} ${guessDirection}`;
-  } else if (this.difference() < 25) {
+  } else if (diff < 25) {
     return `${responses.lukewarm} ${guessDirection}`;
-  } else if (this.difference() < 50) {
+  } else if (diff < 50) {
     return `${responses.chilly} ${guessDirection}`;
   } else {
     return `${responses.cold} ${guessDirection}`;
@@ -106,20 +108,19 @@ Game.prototype.provideHint = function() {
   return shuffle(hints);
 };
 
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
   let game = newGame();
 
   const buttons = {
     go: document.getElementById('submit'),
     reset: document.getElementById('reset'),
-    hint: document.getElementById('hint')
+    hint: document.getElementById('hint'),
   };
 
   const textAreas = {
     input: document.getElementById('guess'),
     guesses: document.querySelectorAll('li'),
-    guessInfo: document.getElementById('guess-results')
+    guessInfo: document.getElementById('guess-results'),
   };
 
   const gameBoard = document.querySelector('.container');
@@ -135,8 +136,19 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   textAreas.input.addEventListener('keypress', function() {
-    const acceptableKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                           'Enter'];
+    const acceptableKeys = [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '0',
+      'Enter',
+    ];
     if (!acceptableKeys.includes(event.key)) {
       event.preventDefault();
     }
@@ -147,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   const handleResetClick = function() {
-    location.href='./index.html';
+    location.href = './index.html';
   };
 
   const handleGoClick = function() {
@@ -165,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 750);
     buttons.hint.setAttribute('disabled', true);
     buttons.hint.style.boxShadow = 'none';
-    buttons.hint.style.color = "grey";
-    buttons.hint.classList.add("no-hover");
+    buttons.hint.style.color = 'grey';
+    buttons.hint.classList.add('no-hover');
   };
 
   gameBoard.addEventListener('click', function() {
@@ -178,6 +190,4 @@ document.addEventListener("DOMContentLoaded", function() {
       handleHintClick();
     }
   });
-
 });
-
